@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    body{
+        background: #F5F9FF;
+        height: auto;
+        text-align: center;
+     
+    }
+    
+    .container{
+        width: 950px;
+        height: auto;
+       display: flex;
+     margin: 0 auto;
+    }
+    .wat{
+        
+        display: block;
+        width: 100%;
+        padding: 8px 16px;
+        line-height:25px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: inherit;
+        border-radius: 6px;
+        -webkit-appearance:none;
+        color:#99A3BA;
+        border: 1px solid #CDD9ED;
+        background: #fff;transition: border .3s ease;
+        &::placeholder{
+            color: #CBD1DC;
+            
+        }
+        
+    }
+    .btn{
+        padding: 8px 12px;
+        line-height: 25px;
+        border: 1px solid #CDD9ED;
+    }
+    .btn:focus{
+        background: #678EFE;
+    }
+/*
+    .numder{
+        display: block;
+    }
+*/
+    .numder a{
+        background-color: #678EFE;
+        color: azure;
+        padding: 8px 12px;
+        display: none;
+    }
+    
+    form{
+        display: block;
+    }
+    @media (max-width: 360px){
+        .container{
+            width: 340px;
+            display: block;
+            margin: 0;
+        } 
+        body{
+        background: red;
+            width: auto;
+        
+     
+    }
+        .wat {
+            width: 100%;
+            padding: 10px 0px 10px 5px;
+            margin-top: 10px;
+            
+        }
+        .btn{
+            width: 100%;
+            margin-top: 10px;
+        }
+        .numder{
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 50px ;
+        }
+        .numder a{
+            font-weight: bold;
+        }
+        .numder:hover a, .numder:focus a{
+            background-color: aliceblue;
+            color: black;
+        }
+    }
+    
+    </style>
+<!--   pattern="0[0-9]{3}-[0-9]{3}-[0-9]{3}"-->
+<div class="container">
+
+    <input class="wat" type="tel" id="wat" name="tel" onclick="this.value=''"  placeholder="0555 XX YY DD" >
+    <input class="wat" type="text" id="textInt" name="text" onclick="this.value=''"  placeholder="text" >
+    <button class="btn" id="event" onclick="getVal();" type="submit">Получить ватсап </button>
+   
+<div class="numder"> <a href="">номер</a><br></div>
+    
+</div >
+   
+   
+   <script>
+    //https://wa.me/1XXXXXXXXXX?text=Я
+
+// var form = document.querySelectorAll("form").preventDefault();
+//form.addEventListener("keyup", function(event) {
+//  if (event.keyCode === 13) {
+//   event.preventDefault();
+//   document.getElementsByClassName("btn").click();
+// 
+      
+       function getVal(){
+           
+    var wat = document.getElementById('wat').value;
+    var textInt = document.getElementById('textInt').value;
+     
+   //.replace(/^*+/, "+996");
+          
+           wat = wat.replace(/\s/g, '');
+           wat = wat.replace(/^0+/, "+996");
+           wat = wat.replace(/\-/g, ""); 
+           wat = wat.replace(/\(/g, ""); 
+           wat = wat.replace(/\)/g, ""); 
+           wat = wat.replace(!/^0+}/, "7");
+           wat = wat.replace(/^0+/,'',/[^*]/, "+996");
+           
+           
+      //this.value.replace(/\D/g, "").replace(/^8/, "7").replace(/^9/, "79");
+   let a = document.querySelector('a');
+   a.setAttribute("href", `https://wa.me/${wat}?text=${textInt}`);
+    document.querySelector('a').textContent =`
+            
+         ${wat}`
+    a.style.display = "block";
+    
+        
+ 
+       
+        
+       }
+       
+
+//       
+//       
+//       
+//              function getVal(){
+//   var wat = document.getElementById('wat').value.replace(/\s/g, "+996").replace(/^0+/, "+996");
+//            
+//    var textInt = document.getElementById('textInt').value;
+//           //https://wa.me/1XXXXXXXXXX?text=Я
+//      //this.value.replace(/\D/g, "").replace(/^8/, "7").replace(/^9/, "79");
+//   let a = document.querySelector('a');
+//   a.setAttribute("href", `https://wa.me/${wat}?text=${textInt}`);
+//    document.querySelector('a').textContent =`
+//            
+//         ${wat}`
+//    a.style.display = "block";
+//    
+//       }
+//    
+    </script>
+    
+</body>
+</html>
