@@ -105,7 +105,7 @@
 
     <input class="wat" type="tel" id="wat" name="tel" onclick="this.value=''"  placeholder="0555 XX YY DD" >
     <input class="wat" type="text" id="textInt" name="text" onclick="this.value=''"  placeholder="text" >
-    <button class="btn" id="event" onclick="getVal();" type="submit">Получить ватсап </button><br>
+    <button class="btn" id="event" onclick="getVal();" type="submit">Получить ватсап </button>
    
 <div class="numder"> <a  target="_blank" href="">номер</a><br></div>
     
@@ -136,7 +136,9 @@
            wat = wat.replace(/\)/g, ""); 
            wat = wat.replace(!/^0+}/, "7");
            wat = wat.replace(/^0+/,'',/[^*]/, "+996");
-           
+           wat = wat.replace(/\*/g, "");
+           wat = wat.replace('', "+996");
+
            
       //this.value.replace(/\D/g, "").replace(/^8/, "7").replace(/^9/, "79");
    let a = document.querySelector('a');
