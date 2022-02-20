@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
@@ -14,56 +15,29 @@
      
     }
     
-    .container{
-        width: 950px;
-        height: auto;
-       display: flex;
-     margin: 0 auto;
-    }
-    .wat{
-        
-        display: block;
-        width: 100%;
-        padding: 8px 16px;
-        line-height:25px;
-        font-size: 14px;
-        font-weight: 500;
-        font-family: inherit;
-        border-radius: 6px;
-        -webkit-appearance:none;
-        color:#99A3BA;
-        border: 1px solid #CDD9ED;
-        background: #fff;transition: border .3s ease;
-        &::placeholder{
-            color: #CBD1DC;
-            
-        }
+    .form-group{
+        margin-top: 10px;
         
     }
-    .btn{
-        padding: 8px 12px;
-        line-height: 25px;
-        border: 1px solid #CDD9ED;
+    .knopka div{
+        margin-right: 5px;
     }
-    .btn:focus{
-        background: #678EFE;
+    
+    
+    .numder a {
+        display: none;
+        text-decoration: none;
+        font-size: 25px;
+        color: black;
     }
-/*
-    .numder{
-        display: block;
+    .numder a:hover{
+        color: darkgray;
     }
-*/
-    .numder a{
-        background-color: #678EFE;
-        color: azure;
-        padding: 8px 12px;
+    .alert{
         display: none;
     }
     
-    form{
-        display: block;
-    }
-    @media (max-width: 560px){
+    @media (max-width: 360px){
         .container{
             width: 340px;
             display: block;
@@ -102,22 +76,45 @@
     </style>
 <!--   pattern="0[0-9]{3}-[0-9]{3}-[0-9]{3}"-->
 <div class="container">
-    <div class="row">
-    <div class="col-12">
-<form>
+    <div class="row" style="display: block;">
+        <div class="col-md-8" style="margin: 0 auto; margin-bottom: 20px;">
+<!--            <form>-->
+                <div class=" form-group">
+                        <input class="wat form-control" type="phone" id="wat" name="tel"  onclick="this.value=''"  placeholder="0555 XX YY DD" />
+                </div>
+                <div class="form-group">
+                        <input  class=" wat form-control" type="text" id="textInt" name="text" onclick="this.value=''"  placeholder="text"  /></div>
+                <div class="knopka d-flex">
+                    <div class="form-group col-md-6">
+                            <input type="submit" class=" btn btn-primary form-control form-control-lg" id="event" onclick="getVal();" /></div>
+                    <div class="form-group col-md-6">
+                            <!-- <input type="reset" class="form-control" /> -->
+                            
+                            
+
+                            </div>
+                </div>
+<!--            </form>-->
+        </div>
+    <div class="col-md-4" style="margin: 0 auto;">
+       <div id="alert" class="alert alert-primary" role="alert">
+     <div class="numder"> <a  target="_blank" href="">Резултать</a><br></div></div>
+</div>
+        
+    </div>
+</div>
+
+
+<!--
     <input class="wat" type="tel" id="wat" name="tel" onclick="this.value=''"  placeholder="0555 XX YY DD" >
     <input class="wat" type="text" id="textInt" name="text" onclick="this.value=''"  placeholder="text" >
-    <button class="btn" id="event" onclick="getVal();" type="submit">Получить ватсап </button></br>
-    <input type="reset" value="По умолчанию">
-   </form>
-  </div>
-    <div class="col-12">
-            <div class="numder"> <a  target="_blank" href="">номер</a><br></div>
-   </div >
-     </div >
-  </div >
+    <button class="btn" id="event" onclick="getVal();" type="submit">Получить ватсап </button>
    
+-->
+
    
+<!--   <div class="numder"> <a  target="_blank" href="">номер</a><br></div>-->
+   <script src="md5.js"></script>
    <script>
     //https://wa.me/1XXXXXXXXXX?text=Я
 
@@ -132,33 +129,38 @@
            
     var wat = document.getElementById('wat').value;
     var textInt = document.getElementById('textInt').value;
-     
+     //textInt.encodeURI('textInt');
+ let alert = document.getElementById('alert');
+     alert.style.display = "block";
    //.replace(/^*+/, "+996");
           
            wat = wat.replace(/\s/g, '');
-           //wat = wat.replace(/^0+/, "+996");
+           
+           //wat = wat.replace(/^0+/, "",);
            wat = wat.replace(/\-/g, ""); 
-           wat = wat.replace(/\(/g, ""); 
-           wat = wat.replace(/\)/g, ""); 
-           //wat = wat.replace(/^0+/,'',/[^*]/, "+996");
+           wat = wat.replace(/\+/g, "");
+           wat = wat.replace(/[^*]/, "");
            wat = wat.replace(/\*/g, "");
-           wat = wat.replace('', "+996");
+           //wat = wat.replace('', "");
+           //wat = wat.replace(/\s996/, "");
+           //wat = wat.replace(/^0+/g,'',/[^*]/, "");
 
            
       //this.value.replace(/\D/g, "").replace(/^8/, "7").replace(/^9/, "79");
    let a = document.querySelector('a');
-   a.setAttribute("href", `https://wa.me/${wat}?text=${textInt}`);
-    document.querySelector('a').textContent =`
-            
-         ${wat}`
+    let res = a.setAttribute("href", `https://wa.me/+996${wat}?text=${textInt}`);
+    document.querySelector('a').textContent =` 
+   +996${wat}
+    `
+
+
     a.style.display = "block";
+           
     
-        
- 
-       
-        
        }
-       
+              
+
+
 
 //       
 //       
