@@ -101,10 +101,16 @@
         <div class="col-md-8" style="margin: 0 auto; margin-bottom: 20px;">
 <!--            <form>-->
                 <div class=" form-group">
-                        <input class="wat form-control" type="phone" id="wat" name="tel"  onclick="this.value=''"  placeholder="0555 XX YY DD" />
-                </div>
+                        <input class="wat form-control" type="tel" id="wat" name="tel" onclick="this.value=''"  placeholder="0555 XX YY DD" />
+                        <div class="valid-feedback">
+                            Looks good!
+                          </div>
+                          <div class="invalid-feedback">
+                            Без <b>0</b> напиши!  
+                          </div>
+                    </div>
                 <div class="form-group">
-                        <input  class=" wat form-control" type="text" id="textInt" name="text" onclick="this.value=''"  placeholder="text"  /></div>
+                        <input  class=" wat form-control" type="text" id="textInt" name="text"  onclick="this.value=''" placeholder="text"  /></div>
                 <div class="knopka d-flex">
                     <div class="form-group col-md-6">
                             <input type="submit" class=" btn btn-primary form-control form-control-lg" id="event" onclick="getVal();" /></div>
@@ -119,7 +125,7 @@
         </div>
     <div class="col-md-4" style="margin: 0 auto;">
        <div id="alert" class="alert alert-primary" role="alert">
-     <div class="numder"> <a  target="_blank" href="">Резултать</a><br></div></div>
+     <div class="numder"> <a  target="_blank" href="">Напиши номер</a><br></div></div>
 </div>
         
     </div>
@@ -138,6 +144,7 @@
    
 <!--   <div class="numder"> <a  target="_blank" href="">номер</a><br></div>-->
    <script src="md5.js"></script>
+   <script src="inputmask.js"></script>
    <script>
     //https://wa.me/1XXXXXXXXXX?text=Я
 
@@ -147,43 +154,70 @@
 //   event.preventDefault();
 //   document.getElementsByClassName("btn").click();
 // 
-      
-       function getVal(){
+var waa = document.querySelector('#wat');
+
+// let reg = /^0+/g
+// waa.oninput =function(){
+//     this.value.replace(reg, '')
+    
+// }
+
+
+var im = new Inputmask(`+\\9\\96 (999) 99-99-99`);
+    im.mask(wat);
+
+function getVal(){
            
     var wat = document.getElementById('wat').value;
-    var textInt = document.getElementById('textInt').value;
-     //textInt.encodeURI('textInt');
- let alert = document.getElementById('alert');
-     alert.style.display = "block";
-   //.replace(/^*+/, "+996");
-          
-           wat = wat.replace(/\s/g, '');
+           var textInt = document.getElementById('textInt').value;
+            
+        let alert = document.getElementById('alert');
+            alert.style.display = "block";
+       
+            
+
+            
+                 
+                  wat = wat.replace(/\s/g, '');
+                  
+               
+                wat = wat.replace(/\-/g, ""); 
+                wat = wat.replace(/\(/g, ""); 
+                wat = wat.replace(/\)/g, ""); 
+                //   wat = wat.replace(/\+/g, "");
+                //   wat = wat.replace(/[^*]/, "");
+                //   wat = wat.replace(/\*/g, "");
            
-           //wat = wat.replace(/^0+/, "",);
-           wat = wat.replace(/\-/g, ""); 
-           wat = wat.replace(/\+/g, "");
-           wat = wat.replace(/[^*]/, "");
-           wat = wat.replace(/\*/g, "");
-           //wat = wat.replace('', "");
-           //wat = wat.replace(/\s996/, "");
-           //wat = wat.replace(/^0+/g,'',/[^*]/, "");
+             
 
+                  let a = document.querySelector('a');
+
+                  
+             let res = a.setAttribute("href", `https://wa.me/${wat}?text=${textInt}`);
+           document.querySelector('a').textContent =` 
+          ${wat}  
+          ${textInt} 
+           `
+       
+       
+           a.style.display = "block";
+                  
            
-      //this.value.replace(/\D/g, "").replace(/^8/, "7").replace(/^9/, "79");
-   let a = document.querySelector('a');
-    let res = a.setAttribute("href", `https://wa.me/+996${wat}?text=${textInt}`);
-    document.querySelector('a').textContent =` 
-   +996${wat}  
-   ${textInt} 
-    `
+              }
+                 
+            let reg ="0"; 
+              waa.oninput=function(){
+                    if(this.value.startsWith(reg,6)){
 
-
-    a.style.display = "block";
-           
-    
-       }
-              
-
+                        this.value=this.value.replace(reg,'');
+                        this.classList.add('is-invalid');
+                        
+                    }else{
+                        this.classList.remove('is-invalid');
+                        this.classList.add('is-valid');
+                        
+                    }
+              }
 
 
 //       
@@ -205,6 +239,6 @@
 //       }
 //    
     </script>
-    
+ 
 </body>
 </html>
