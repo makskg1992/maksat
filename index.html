@@ -10,6 +10,10 @@
 </head>
 <body>
 <style>
+   .row{
+      padding: 0;
+      margin: 0;
+   }
  .col-6 {
     background-color: bisque;
     height: 100vh;
@@ -47,6 +51,14 @@ background-color: #3390ec;
     color: #128c7e;
     border-bottom: 5px solid #128c7e;
  }
+ .element::-webkit-scrollbar {
+  width: 0;
+}
+
+/*Убрать полосу прокрутки для всей страницы*/
+::-webkit-scrollbar {
+  width: 0;
+}
  @media (max-width: 768px){
     .col-6 a{
         font-size: 30px;
@@ -63,7 +75,7 @@ background-color: #3390ec;
   
  }
  </style>
-<div class="container-fluid"></div>
+<div class="container"></div>
 <div class="row">
     <div class="col-6 telegram">
         <a href="telegram.html" class="">Telegram <i class="bi bi-telegram"></i></a>
